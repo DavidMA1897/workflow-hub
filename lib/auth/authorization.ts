@@ -3,6 +3,7 @@ import "server-only";
 import { UserRole } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 import { getSession } from "./session";
 
 export type AuthenticatedUser = {
@@ -25,7 +26,7 @@ export class AuthorizationError extends Error {
   }
 }
 
-export async function getAuthenticatedUser(): Promise<AuthenticatedUser | null> {
+export const getAuthenticatedUser = cache(async (): Promise<AuthenticatedUser | null> => {
   const session = await getSession();
   if (!session) return null;
   const user = await prisma.user.findUnique({
@@ -34,7 +35,7 @@ export async function getAuthenticatedUser(): Promise<AuthenticatedUser | null> 
   });
   if (!user || user.role !== session.role) return null;
   return user;
-}
+});
 
 export async function requireAuthenticatedUser() {
   const user = await getAuthenticatedUser();
