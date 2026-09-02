@@ -46,3 +46,5 @@ next-env.d.ts
 # Local AI agent skills
 /.agents/
 /.claude/
+/.cursor/
+/.windsurf/
