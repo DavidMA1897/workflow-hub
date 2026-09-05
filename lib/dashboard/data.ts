@@ -26,7 +26,7 @@ export async function getDashboardOverview(user: AuthenticatedUser) {
         fromStatus: true,
         toStatus: true,
         createdAt: true,
-        request: { select: { title: true } },
+        request: { select: { id: true, title: true } },
         user: { select: { name: true } },
       },
     }),

@@ -12,7 +12,9 @@ type AppHeaderProps = {
 
 export function AppHeader({ onOpenMenu, user }: AppHeaderProps) {
   const pathname = usePathname();
-  const title = pageTitles[pathname] ?? "FlowPilot";
+  const title =
+    pageTitles[pathname] ??
+    (pathname.startsWith("/requests/") ? "Requests" : "FlowPilot");
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-6 lg:px-8">

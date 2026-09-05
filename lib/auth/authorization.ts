@@ -5,18 +5,13 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { cache } from "react";
 import { getSession } from "./session";
+import { hasMinimumRole } from "./roles";
 
 export type AuthenticatedUser = {
   id: string;
   name: string;
   email: string;
   role: UserRole;
-};
-
-const roleAccessLevel: Record<UserRole, number> = {
-  [UserRole.USER]: 1,
-  [UserRole.REVIEWER]: 2,
-  [UserRole.ADMIN]: 3,
 };
 
 export class AuthorizationError extends Error {
@@ -46,7 +41,7 @@ export async function requireAuthenticatedUser() {
 export async function requireMinimumRole(minimumRole: UserRole) {
   const user = await getAuthenticatedUser();
   if (!user) throw new AuthorizationError("Authentication required.");
-  if (roleAccessLevel[user.role] < roleAccessLevel[minimumRole]) {
+  if (!hasMinimumRole(user.role, minimumRole)) {
     throw new AuthorizationError();
   }
   return user;
