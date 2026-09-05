@@ -1,7 +1,8 @@
 {
-  "name": "workflow-hub",
+  "name": "flowpilot",
   "version": "0.1.0",
   "private": true,
+  "description": "A secure full-stack workflow management platform built with Next.js, TypeScript, PostgreSQL, and Prisma.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

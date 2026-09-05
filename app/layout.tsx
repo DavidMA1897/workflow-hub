@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: { default: "FlowPilot", template: "%s | FlowPilot" },
-  description: "A modern workflow and request management platform.",
+  description:
+    "A secure full-stack workflow management platform built with Next.js, TypeScript, PostgreSQL, and Prisma.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

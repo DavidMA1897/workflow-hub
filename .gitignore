@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/.vitest/
 
 # next.js
 /.next/
@@ -48,4 +49,5 @@ next-env.d.ts
 /.claude/
 /.cursor/
 /.windsurf/
+/.codex/
 /skills-lock.json
